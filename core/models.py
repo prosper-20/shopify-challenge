@@ -43,8 +43,9 @@ class Product(models.Model):
 	seller = models.ForeignKey(User, on_delete=models.CASCADE)
 	slug = models.SlugField(blank=True, default='')
 
+
 	def get_absolute_url(self):
-			return reverse('product-detail', kwargs={"slug": slug})
+		return reverse("product-detail", args={'slug': self.slug})
 
 
 	def __str__(self):

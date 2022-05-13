@@ -1,7 +1,8 @@
 from typing import List
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Product
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 # Create your views here.
 
@@ -14,4 +15,31 @@ class HomeView(ListView):
 class ProductDetailView(DetailView):
     model = Product
     context_object_name = "product"
-    
+
+
+class ProductCreateView(LoginRequiredMixin, CreateView):
+    model = Product
+    fields = ["brand", "category", "name", "code", "image", "quantity", "rate", "status", "seller", "slug"]
+
+
+
+    def form_valid(self, form):
+        form.instance.seller = self.request.user
+        return super().form_valid(form)
+
+
+class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Product
+    fields = ["brand", "category", "name", "code", "image", "quantity", "rate", "status", "seller", "slug"]
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+
