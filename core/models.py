@@ -41,7 +41,7 @@ class Product(models.Model):
 	rate = models.FloatField(max_length=100)
 	status = models.CharField(max_length=10, choices=CHOICES)
 	seller = models.ForeignKey(User, on_delete=models.CASCADE)
-	slug = models.SlugField(blank=True, default='')
+	slug = models.SlugField()
 
 
 	def get_absolute_url(self):

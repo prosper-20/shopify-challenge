@@ -1,6 +1,6 @@
 from typing import List
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Product
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
@@ -37,8 +37,18 @@ class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return super().form_valid(form)
 
     def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.author:
+        product = self.get_object()
+        if self.request.user == product.seller:
+            return True
+        return False
+
+class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Product
+    success_url = '/'
+
+    def test_func(self):
+        product = self.get_object()
+        if self.request.user == product.seller:
             return True
         return False
 
