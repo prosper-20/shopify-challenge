@@ -20,14 +20,14 @@ class Brand(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=255)
-    status = models.CharField(max_length=10, choices=CHOICES)
+	name = models.CharField(max_length=255)
+	status = models.CharField(max_length=10, choices=CHOICES)
 
-    class Meta:
-        verbose_name_plural = "Categories"
+	class Meta:
+		verbose_name_plural = "Categories"
 
-    def __str__(self):
-        return self.name
+	def __str__(self):
+		return self.name
 
 
 class Product(models.Model):
@@ -44,14 +44,17 @@ class Product(models.Model):
 	slug = models.SlugField(blank=True, default='')
 
 	def get_absolute_url(self):
-    	return reverse('product-detail', kwargs={'slug':self.slug})
+			return reverse('product-detail', kwargs={"slug": slug})
+
 
 	def __str__(self):
 		return self.name
-	
+
 	def save(self, *args, **kwargs): # < here
 		self.slug = slugify(self.title)
 		super(Product, self).save()
+
+
 
 	def save(self):
 		super().save()
@@ -62,3 +65,6 @@ class Product(models.Model):
 			output_size = (300, 300)
 			img.thumbnail(output_size)
 			img.save(self.image.path)
+
+
+	
