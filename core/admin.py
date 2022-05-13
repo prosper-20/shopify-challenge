@@ -5,4 +5,13 @@ from .models import Brand, Category, Product
 
 admin.site.register(Category)
 admin.site.register(Brand)
-admin.site.register(Product)
+
+
+class ProductAdmin(admin.ModelAdmin):
+    model = Product
+
+
+    list_display = ["name", "brand", "category", "seller", "status"]
+
+
+admin.site.register(Product, ProductAdmin)
