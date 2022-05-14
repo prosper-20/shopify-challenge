@@ -1,9 +1,11 @@
 from typing import List
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Product
+from .models import Product, Comment
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.urls import reverse_lazy
+from .forms import CommentForm
 
 # Create your views here.
 
@@ -72,3 +74,19 @@ class UserProductListView(ListView):
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('seller'))
         return Product.objects.filter(seller=user).order_by('-name')
+
+
+class PostCommentView(LoginRequiredMixin, CreateView):
+    model = Comment
+    form_class = CommentForm
+    # success_url = "/"
+    template_name = "comment/post_comment_form.html"
+
+    def form_valid(self, form):
+        form.instance.name = self.request.user
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('post_detail', kwargs={'pk': self.kwargs['pk']})
+

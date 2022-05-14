@@ -68,4 +68,21 @@ class Product(models.Model):
 			img.save(self.image.path)
 
 
+
+class Comment(models.Model):
+    product = models.ForeignKey(Product, related_name="comments", on_delete=models.CASCADE)
+    name = models.ForeignKey(User, on_delete=models.CASCADE)
+    body = models.TextField('Enter your commment...')
+    date_added = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return f"{self.name}"
+
+    def get_absolute_url(self):
+        return reverse("post_detail", kwargs={
+            'slug': self.slug
+        })
+
+
 	
