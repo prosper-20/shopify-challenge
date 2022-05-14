@@ -29,8 +29,9 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
 
 class MakeProduct(CreateView):
     model = Product
+    fields = ["brand", "category", "name", "code", "image", "quantity", "rate", "status", "seller", "slug"]
 
-    
+
 
 
 class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
