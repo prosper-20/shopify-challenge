@@ -8,6 +8,9 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
+     <!--Bootstrap CSS-->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link rel="stylesheet" href="{% static 'users/css/style.css' %}">
@@ -16,6 +19,11 @@
 	<body class="img" style="background-image: url(https://preview.colorlib.com/theme/bootstrap/signup-form-19/images/xbg.jpg.pagespeed.ic.q-1Zrt4ryY.webp);">
 	<section class="ftco-section">
 		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">P'S STORE</h2>
+				</div>
+			</div>
             {% if messages %}
             {% for message in messages %}
               <div style="color: white;" class="alert alert-{{ message.tags }}">
@@ -23,11 +31,6 @@
               </div>
             {% endfor %}
             {% endif %}
-			<div class="row justify-content-center">
-				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">P'S STORE</h2>
-				</div>
-			</div>
 			<div class="row justify-content-center">
 				<div class="col-md-7 col-lg-5">
 					<div class="login-wrap">
@@ -71,6 +74,10 @@
   <script src="{% static 'users/js/popper.js' %}"></script>
   <script src="{% static 'users/js/bootstrap.min.js' %}"></script>
   <script src="{% static 'users/js/main.js' %}"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 	</body>
 </html>
