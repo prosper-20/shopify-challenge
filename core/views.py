@@ -22,9 +22,15 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
     fields = ["brand", "category", "name", "code", "image", "quantity", "rate", "status", "seller", "slug"]
 
 
-    # def form_valid(self, form):
-    #     form.instance.seller = self.request.user
-    #     return super().form_valid(form)
+    def form_valid(self, form):
+        form.instance.seller = self.request.user
+        return super().form_valid(form)
+
+
+class MakeProduct(CreateView):
+    model = Product
+
+    
 
 
 class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

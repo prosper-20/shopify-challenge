@@ -1,5 +1,5 @@
-from audioop import reverse
 import imp
+from django.urls import reverse
 from tabnanny import verbose
 from django.db import models
 from django.contrib.auth.models import User
@@ -45,7 +45,7 @@ class Product(models.Model):
 
 
 	def get_absolute_url(self):
-		return reverse("product-detail", args={'slug': self.slug})
+		return reverse("product-detail", kwargs={'slug': self.slug})
 
 
 	def __str__(self):
