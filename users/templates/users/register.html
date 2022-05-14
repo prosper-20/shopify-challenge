@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Sign Up 09</title>
+  	<title>Sign Up | P's Store</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -18,7 +18,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Sign Up #09</h2>
+					<h2 class="heading-section">P'S STORE</h2>
 				</div>
 			</div>
 			<div class="row justify-content-center">
@@ -28,23 +28,23 @@
 						<form action="#" class="signup-form">
 		      		<div class="form-group mb-3">
 		      			<label class="label" for="name">Full Name</label>
-		      			<input type="text" class="form-control" placeholder="John Doe">
+		      			<input type="text" name="username" class="form-control" placeholder="John Doe" required_id="id_username">
 		      			<span class="icon fa fa-user-o"></span>
 		      		</div>
 		      		<div class="form-group mb-3">
 		      			<label class="label" for="email">Email Address</label>
-		      			<input type="text" class="form-control" placeholder="johndoe@gmail.com">
+		      			<input type="email" name="email" class="form-control" placeholder="johndoe@gmail.com" required_id="id_email">
 		      			<span class="icon fa fa-paper-plane-o"></span>
 		      		</div>
 	            <div class="form-group mb-3">
 	            	<label class="label" for="password">Password</label>
-	              <input id="password" type="password" class="form-control" placeholder="Password">
+	              <input id="password" type="password" name="password" class="form-control" placeholder="Password" required_id="id_password">
 	              <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 	              <span class="icon fa fa-lock"></span>
 	            </div>
 	            <div class="form-group mb-3">
-	            	<label class="label" for="password">Password</label>
-	              <input id="password-confirm" type="password" class="form-control" placeholder="Password">
+	            	<label class="label" for="password">Repeat Password</label>
+	              <input id="password-confirm" type="password" name="password2" class="form-control" placeholder="Password" required_id="id_password2">
 	              <span toggle="#password-confirm" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 	              <span class="icon fa fa-lock"></span>
 	            </div>

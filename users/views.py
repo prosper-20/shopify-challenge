@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib import auth
 
 # Create your views here.
 
@@ -27,4 +28,23 @@ def register(request):
             messages.error(request, "Both password fields didn't match")
             return redirect("register")
     return render(request, "users/register.html")
+
+
+def login(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+
+        user = auth.authenticate(username=username, password=password)
+
+        
+        if user is not None:
+            auth.login(request, user)
+            # messages.success(request, "You are logged in")
+            return redirect('/')
+        else:
+            messages.error(request, "Credentials not valid")
+            return redirect("login")
+    #You changed from login.htnl to form-login
+    return render(request, 'users/login.html')
             
