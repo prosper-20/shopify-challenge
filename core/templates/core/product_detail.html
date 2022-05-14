@@ -9,12 +9,10 @@
         <small class="text-muted">{{ product.category }}</small>
         <small class="text-muted">{{ product.name }}</small>
         <small class="text-muted">{{ product.get_status_display }}</small>
-        {% if product.seller == user %}
           <div>
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="">Update</a>
-            <a class="btn btn-danger btn-sm mt-1 mb-1" href="">Delete</a>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'product-update' product.slug %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'product-update' product.slug %}">Delete</a>
           </div>
-        {% endif %}
       </div>
       <h2 class="article-title">{{ product.name }}</h2>
       <p class="article-content">quantity - {{ product.quantity }}</p>
