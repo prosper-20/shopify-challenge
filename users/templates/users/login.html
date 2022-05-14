@@ -21,6 +21,13 @@
 					<h2 class="heading-section">P'S STORE</h2>
 				</div>
 			</div>
+            {% if messages %}
+            {% for message in messages %}
+              <div style="color: white;" class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+            {% endif %}
 			<div class="row justify-content-center">
 				<div class="col-md-7 col-lg-5">
 					<div class="login-wrap">
