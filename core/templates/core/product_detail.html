@@ -1,4 +1,5 @@
 {% extends "core/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
   <article class="media content-section">
     <img class="rounded-circle article-img" src="{{ product.image.url }}">
@@ -11,11 +12,43 @@
         <small class="text-muted">{{ product.get_status_display }}</small>
           <div>
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'product-update' product.slug %}">Update</a>
-            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'product-update' product.slug %}">Delete</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'product-delete' product.slug %}">Delete</a>
           </div>
       </div>
       <h2 class="article-title">{{ product.name }}</h2>
       <p class="article-content">quantity - {{ product.quantity }}</p>
     </div>
+    <!-- FOR COMMENTS -->
+  <div class="pt-5 mt-5">
+    <h3 class="mb-5">{{ product.comments.count }} Comments</h3>
+    <ul class="comment-list">
+      {% for comment in product.comments.all %}
+      <li class="comment">
+        <div class="vcard bio">
+          <img src="/media/user.jpg" alt="Image placeholder">
+        </div>
+        <div class="comment-body">
+          <h3>{{ comment.name }}</h3>
+          <div class="meta">{{ comment.date_posted }}</div>
+          <p>{{ comment.body }}</p>
+          <p><a href="#" class="reply">Reply</a></p>
+        </div>
+      </li>
+      {% endfor %}
+      <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Add Comment</legend>
+                {{ form.media }}
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info">Comment</button>
+            </div>
+        </form>
+    </div>
+    
   </article>
+  
 {% endblock content %}

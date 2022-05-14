@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import Product, Comment
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from core.forms import CommentForm
 from django.contrib import messages
 
@@ -92,15 +92,16 @@ def ProductDetailView(request, slug=None): # < here
     product = get_object_or_404(Product, slug=slug) # < here
     products = Product.objects.all()[:2]
     if request.method == "POST":
-        name = request.POST["name"]
-        body = request.POST["body"]
-
-        new = Comment.objects.create(post=post, name=name, body=body)
-        new.save()
-        messages.success(request, "Comment saved")
-        return redirect("/")
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            name = form.cleaned_data.get("name")
+            body = form.cleaned_data.get("body")
+            
+            messages.success(request, f"Hi {name}, you cmment has been saved")
+            return redirect("/")
         
     else:
-
-        return render(request, 'blog/post_detail.html', {"product": product, "products": products})
+        form = CommentForm()
+        return render(request, 'core/product_detail.html', {"product": product, "products": products, 'form':form})
 
