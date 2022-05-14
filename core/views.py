@@ -76,11 +76,11 @@ class UserProductListView(ListView):
         return Product.objects.filter(seller=user).order_by('-name')
 
 
-class PostCommentView(LoginRequiredMixin, CreateView):
+class ProductCommentView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
     # success_url = "/"
-    template_name = "comment/post_comment_form.html"
+    template_name = "core/product_comment_form.html"
 
     def form_valid(self, form):
         form.instance.name = self.request.user
