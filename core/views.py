@@ -66,9 +66,9 @@ class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class UserProductListView(ListView):
     model = Product
     template_name = 'core/user_products.html'  # <app>/<model>_<viewtype>.html
-    context_object_name = 'posts'
+    context_object_name = 'products'
     paginate_by = 5
 
     def get_queryset(self):
-        user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Product.objects.filter(seller=user).order_by('-date_posted')
+        user = get_object_or_404(User, username=self.kwargs.get('seller'))
+        return Product.objects.filter(seller=user).order_by('-name')

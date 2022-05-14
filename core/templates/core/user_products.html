@@ -1,16 +1,21 @@
-{% extends "blog/base.html" %}
+{% extends "core/base.html" %}
 {% block content %}
-    <h1 class="mb-3">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
-    {% for post in posts %}
+    <h1 class="mb-3">Products sold by {{ view.kwargs.seller }} ({{ page_obj.paginator.count }})</h1>
+    {% for product in products %}
         <article class="media content-section">
-          <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+          <img class="rounded-circle article-img" src="{{ product.seller.profile.image.url }}">
+          <img class="rounded-circle article-img" src="{{ product.seller.profile.image.url }}">
           <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-              <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+              <a class="mr-2" href="#">{{ product.brand }}</a>
+              <a class="mr-2" href="#">{{ product.category }}</a>
+              <a class="mr-2" href="#">{{ product.rate }}</a>
+              <a class="mr-2" href="{% url 'user-products' product.seller %}">{{ product.seller  }}</a>
+              <small class="text-muted">{{ product.get_status_display }}</small>
+              <small class="text-muted">{{ produt.quantity }}</small>
             </div>
-            <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content }}</p>
+            <h2><a class="article-title" href="{{ product.get_absolute_url }}">{{ post.title }}</a></h2>
+            <!-- <p class="article-content">{{ post.content }}</p> -->
           </div>
         </article>
     {% endfor %}
