@@ -61,8 +61,8 @@ def profile(request):
             messages.success(request, "Your profile has been updated")
             return redirect("profile")
     else:
-        u_form = UserUpdateForm()
-        p_form = ProfileUpdateForm()
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
 
     context = {
         "u_form": u_form,

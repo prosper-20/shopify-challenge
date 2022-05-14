@@ -10,3 +10,4 @@ urlpatterns = [
     path('product/<slug:slug>/delete/', ProductDeleteView.as_view(), name="product-delete"),
     path('new/', MakeProduct.as_view(), name="maker")
 ]
+
