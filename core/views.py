@@ -5,7 +5,7 @@ from .models import Product, Comment
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
-from .forms import CommentForm
+from core.forms import CommentForm
 
 # Create your views here.
 
