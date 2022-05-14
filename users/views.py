@@ -8,12 +8,12 @@ from django.contrib import auth
 
 def register(request):
     if request.method == "POST":
-        username = request.POST['username']
-        email = request.POST['email']
-        passowrd = request.POST['password']
-        password2 = request.POST['password2']
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        password2 = request.POST.get('password2')
 
-        if passowrd == password2:
+        if password == password2:
             if User.objects.filter(username=username).exists():
                 messages.error(request, "Username already exists!!")
                 return redirect("register")
@@ -21,7 +21,7 @@ def register(request):
                 messages.error(request, "Email belongs to another user")
                 return redirect("register")
             else:
-                User.objects.create_user(username=username, email=email, passowrd=password)
+                User.objects.create_user(username=username, email=email, password=password)
                 messages.success(request, f"Hi {username}, your account creation was successful, Kindly login below")
                 return redirect("login")
         else:
@@ -40,7 +40,7 @@ def login(request):
         
         if user is not None:
             auth.login(request, user)
-            # messages.success(request, "You are logged in")
+            messages.success(request, "You are logged in")
             return redirect('/')
         else:
             messages.error(request, "Credentials not valid")

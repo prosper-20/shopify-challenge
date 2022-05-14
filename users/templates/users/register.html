@@ -16,6 +16,13 @@
 	<body class="img" style="background-image: url(https://preview.colorlib.com/theme/bootstrap/signup-form-19/images/xbg.jpg.pagespeed.ic.q-1Zrt4ryY.webp);">
 	<section class="ftco-section">
 		<div class="container">
+            {% if messages %}
+            {% for message in messages %}
+              <div style="color: white;" class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+            {% endif %}
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
 					<h2 class="heading-section">P'S STORE</h2>
@@ -25,7 +32,8 @@
 				<div class="col-md-7 col-lg-5">
 					<div class="login-wrap">
 		      	<h3 class="text-center mb-4">Create Your Account</h3>
-						<form action="#" class="signup-form">
+						<form action="#" method="post" class="signup-form">
+                            {% csrf_token %}
 		      		<div class="form-group mb-3">
 		      			<label class="label" for="name">Full Name</label>
 		      			<input type="text" name="username" class="form-control" placeholder="John Doe" required_id="id_username">
@@ -52,7 +60,7 @@
 	            	<button type="submit" class="form-control btn btn-primary submit px-3">Sign Up</button>
 	            </div>
 	          </form>
-	          <p>I'm already a member! <a data-toggle="tab" href="#signin">Sign In</a></p>
+	          <p>I'm already a member! <a data-toggle="tab" href="{% url 'login' %}">Sign In</a></p>
 	        </div>
 				</div>
 			</div>

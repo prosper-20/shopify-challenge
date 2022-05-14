@@ -1,0 +1,70 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Sign In | P's Store</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="{% static 'users/css/style.css' %}">
+
+	</head>
+	<body class="img" style="background-image: url(https://preview.colorlib.com/theme/bootstrap/signup-form-19/images/xbg.jpg.pagespeed.ic.q-1Zrt4ryY.webp);">
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">P'S STORE</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-7 col-lg-5">
+					<div class="login-wrap">
+		      	<h3 class="text-center mb-4">Sign In</h3>
+						<form action="#" method="post" class="signup-form">
+                            {% csrf_token %}
+		      		<div class="form-group mb-3">
+		      			<label class="label" for="name">Username</label>
+		      			<input type="text" name="username" class="form-control" placeholder="John Doe" required_id="id_username">
+		      			<span class="icon fa fa-user-o"></span>
+		      		</div>
+		      		<!-- <div class="form-group mb-3">
+		      			<label class="label" for="email">Email Address</label>
+		      			<input type="email" name="email" class="form-control" placeholder="johndoe@gmail.com" required_id="id_email">
+		      			<span class="icon fa fa-paper-plane-o"></span>
+		      		</div> -->
+	            <div class="form-group mb-3">
+	            	<label class="label" for="password">Password</label>
+	              <input id="password" type="password" name="password" class="form-control" placeholder="Password" required_id="id_password">
+	              <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+	              <span class="icon fa fa-lock"></span>
+	            </div>
+	            <!-- <div class="form-group mb-3">
+	            	<label class="label" for="password">Repeat Password</label>
+	              <input id="password-confirm" type="password" name="password2" class="form-control" placeholder="Password" required_id="id_password2">
+	              <span toggle="#password-confirm" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+	              <span class="icon fa fa-lock"></span>
+	            </div> -->
+	            <div class="form-group">
+	            	<button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
+	            </div>
+	          </form>
+	          <p>Need An Account? <a data-toggle="tab" href="{% url 'register' %}">Sign Up</a></p>
+	        </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="{% static 'users/js/jquery.min.js' %}"></script>
+  <script src="{% static 'users/js/popper.js' %}"></script>
+  <script src="{% static 'users/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'users/js/main.js' %}"></script>
+
+	</body>
+</html>
+
