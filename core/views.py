@@ -2,15 +2,17 @@ from typing import List
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Product
-from django.contrib.auth.modles u
+from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 # Create your views here.
+
 
 class HomeView(ListView):
     model = Product
     context_object_name = "products"
     template_name = "core/home.html"
+    paginate_by = 2
 
 
 class ProductDetailView(DetailView):
@@ -20,8 +22,8 @@ class ProductDetailView(DetailView):
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
-    fields = ["brand", "category", "name", "code", "image", "quantity", "rate", "status", "seller", "slug"]
-
+    fields = ["brand", "category", "name", "code", "image",
+              "quantity", "rate", "status", "seller", "slug"]
 
     def form_valid(self, form):
         form.instance.seller = self.request.user
@@ -30,14 +32,14 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
 
 class MakeProduct(CreateView):
     model = Product
-    fields = ["brand", "category", "name", "code", "image", "quantity", "rate", "status", "seller", "slug"]
-
-
+    fields = ["brand", "category", "name", "code", "image",
+              "quantity", "rate", "status", "seller", "slug"]
 
 
 class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Product
-    fields = ["brand", "category", "name", "code", "image", "quantity", "rate", "status", "seller", "slug"]
+    fields = ["brand", "category", "name", "code", "image",
+              "quantity", "rate", "status", "seller", "slug"]
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -48,6 +50,7 @@ class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         if self.request.user == product.seller:
             return True
         return False
+
 
 class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Product
@@ -60,7 +63,7 @@ class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 
-class UserProduListView(ListView):
+class UserProductListView(ListView):
     model = Product
     template_name = 'core/user_products.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
@@ -68,6 +71,4 @@ class UserProduListView(ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Product.objects.filter(author=user).order_by('-date_posted')
-
-
+        return Product.objects.filter(seller=user).order_by('-date_posted')
