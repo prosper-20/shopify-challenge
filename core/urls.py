@@ -1,5 +1,4 @@
 from django.urls import path
-from . import views
 from .views import HomeView, ProductDetailView, ProductCreateView, ProductUpdateView, ProductDeleteView, MakeProduct, UserProductListView, ProductCommentView
 
 urlpatterns = [

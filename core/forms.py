@@ -1,24 +1,11 @@
 import imp
 from django import forms
 from django.contrib.auth.models import User
-from users.models import Profile
+from .models import Comment
 
 
-class UserUpdateForm(forms.ModelForm):
+class CommentForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = Comment
 
-
-        fields = ["username", "email"]
-
-
-class ProfileUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-
-
-        fields = ["image"]
-
-
-class CommentForm(models.ModelForm):
-    
+        fields = ["name", "body"]

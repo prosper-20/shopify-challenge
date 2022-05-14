@@ -1,11 +1,12 @@
 from typing import List
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Product, Comment
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from core.forms import CommentForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -17,9 +18,9 @@ class HomeView(ListView):
     paginate_by = 2
 
 
-class ProductDetailView(DetailView):
-    model = Product
-    context_object_name = "product"
+# class ProductDetailView(DetailView):
+#     model = Product
+#     context_object_name = "product"
 
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
@@ -82,11 +83,24 @@ class ProductCommentView(LoginRequiredMixin, CreateView):
     # success_url = "/"
     template_name = "core/product_comment_form.html"
 
-    def form_valid(self, form):
-        form.instance.name = self.request.user
-        form.instance.post_id = self.kwargs['pk']
-        return super().form_valid(form)
-
     def get_success_url(self):
-        return reverse_lazy('post_detail', kwargs={'pk': self.kwargs['pk']})
+        return reverse_lazy('product-detail', kwargs={'slug': self.kwargs['slug']})
+
+
+
+def ProductDetailView(request, slug=None): # < here
+    product = get_object_or_404(Product, slug=slug) # < here
+    products = Product.objects.all()[:2]
+    if request.method == "POST":
+        name = request.POST["name"]
+        body = request.POST["body"]
+
+        new = Comment.objects.create(post=post, name=name, body=body)
+        new.save()
+        messages.success(request, "Comment saved")
+        return redirect("/")
+        
+    else:
+
+        return render(request, 'blog/post_detail.html', {"product": product, "products": products})
 
