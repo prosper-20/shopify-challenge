@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -9,10 +10,10 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="{% static 'users/css/style.css' %}">
 
 	</head>
-	<body class="img" style="background-image: url(images/bg.jpg);">
+	<body class="img" style="background-image: url(https://preview.colorlib.com/theme/bootstrap/signup-form-19/images/xbg.jpg.pagespeed.ic.q-1Zrt4ryY.webp);">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -58,10 +59,10 @@
 		</div>
 	</section>
 
-	<script src="js/jquery.min.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
+	<script src="{% static 'users/js/jquery.min.js' %}"></script>
+  <script src="{% static 'users/js/popper.js' %}"></script>
+  <script src="{% static 'users/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'users/js/main.js' %}"></script>
 
 	</body>
 </html>
