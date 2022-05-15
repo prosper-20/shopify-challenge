@@ -92,16 +92,15 @@ def ProductDetailView(request, slug=None): # < here
     product = get_object_or_404(Product, slug=slug) # < here
     products = Product.objects.all()[:2]
     if request.method == "POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            form.save()
-            name = form.cleaned_data.get("name")
-            body = form.cleaned_data.get("body")
-            
-            messages.success(request, f"Hi {name}, you cmment has been saved")
-            return redirect("/")
+        name = request.POST["name"]
+        body = request.POST["body"]
+
+        new = Comment.objects.create(product=product, name=name, body=body)
+        new.save()
+        messages.success(request, "Comment saved")
+        return redirect("/")
         
     else:
         form = CommentForm()
-        return render(request, 'core/product_detail.html', {"product": product, "products": products, 'form':form})
+        return render(request, 'core/product_detail.html', {"product": product, "products": products})
 
