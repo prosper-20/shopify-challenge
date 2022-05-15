@@ -19,13 +19,16 @@
       <p class="article-content">quantity - {{ product.quantity }}</p>
     </div>
     <!-- FOR COMMENTS -->
+    <br>
+    <div>
+
   <div class="pt-5 mt-5">
     <h3 class="mb-5">{{ product.comments.count }} Comments</h3>
     <ul class="comment-list">
       {% for comment in product.comments.all %}
       <li class="comment">
         <div class="vcard bio">
-          <img src="/media/user.jpg" alt="Image placeholder">
+          <img class="rounded-circle article-img" src="/media/user.jpg" alt="Image placeholder">
         </div>
         <div class="comment-body">
           <h3>{{ comment.name }}</h3>
@@ -56,6 +59,8 @@
         </div>
       </form>
     </div>
+
+  </div>
     
   </article>
   
