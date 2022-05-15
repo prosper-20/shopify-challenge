@@ -39,31 +39,31 @@ class MakeProduct(CreateView):
               "quantity", "rate", "status", "seller", "slug"]
 
 
-class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class ProductUpdateView(UpdateView):
     model = Product
     fields = ["brand", "category", "name", "code", "image",
               "quantity", "rate", "status", "seller", "slug"]
 
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+    # def form_valid(self, form):
+    #     form.instance.author = self.request.user
+    #     return super().form_valid(form)
 
-    def test_func(self):
-        product = self.get_object()
-        if self.request.user == product.seller:
-            return True
-        return False
+    # def test_func(self):
+    #     product = self.get_object()
+    #     if self.request.user == product.seller:
+    #         return True
+    #     return False
 
 
-class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class ProductDeleteView(DeleteView):
     model = Product
     success_url = '/'
 
-    def test_func(self):
-        product = self.get_object()
-        if self.request.user == product.seller:
-            return True
-        return False
+    # def test_func(self):
+    #     product = self.get_object()
+    #     if self.request.user == product.seller:
+    #         return True
+    #     return False
 
 
 class UserProductListView(ListView):
@@ -102,5 +102,6 @@ def ProductDetailView(request, slug=None): # < here
         
     else:
         form = CommentForm()
-        return render(request, 'core/product_detail.html', {"product": product, "products": products})
+        # You changed form product_detail.html to detail_2.html
+        return render(request, 'core/detail_2.html', {"product": product, "products": products})
 
