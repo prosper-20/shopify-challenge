@@ -105,3 +105,8 @@ def ProductDetailView(request, slug=None): # < here
         # You changed form product_detail.html to detail_2.html
         return render(request, 'core/detail_2.html', {"product": product, "products": products})
 
+    
+def CheckAvailabilty(request):
+    products = Product.objects.filter(status=1)
+    return render(request, "core/available.html", {"products": products})
+
