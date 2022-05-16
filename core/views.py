@@ -106,7 +106,7 @@ def ProductDetailView(request, slug=None): # < here
         return render(request, 'core/detail_2.html', {"product": product, "products": products})
 
     
-def CheckAvailabilty(request):
-    products = Product.objects.filter(status="1").all()
+def PhoneView(request):
+    products = Product.objects.filter(category="1").all()
     return render(request, "core/available.html", {"products": products})
 
