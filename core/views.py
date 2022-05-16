@@ -15,7 +15,7 @@ class HomeView(ListView):
     model = Product
     context_object_name = "products"
     template_name = "core/home2.html" # Changed from home.html to home2.html
-    paginate_by = 2
+    paginate_by = 3
 
 
 # class ProductDetailView(DetailView):
@@ -114,4 +114,9 @@ def PhoneView(request):
 def ElectronicsView(request):
     products = Product.objects.filter(category="2").all()
     return render(request, "core/electronics.html", {"products": products})
+
+
+def OtherView(request):
+    products = Product.objects.filter(category="3").all()
+    return render(request, "core/other.html", {"products": products})
 

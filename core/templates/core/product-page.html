@@ -15,7 +15,7 @@
   <link href="{% static 'core/css/mdb.min.css' %}" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="{% static 'core/css/style.min.css' %}" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'core/main.css' %}">
+
 </head>
 
 <body>
@@ -25,8 +25,8 @@
     <div class="container">
 
       <!-- Brand -->
-      <a class="navbar-brand waves-effect" href="{% url 'home' %}" target="_blank">
-        <strong class="blue-text">P's Store</strong>
+      <a class="navbar-brand waves-effect" href="{% url 'home' %}" target="_top">
+        <strong class="blue-text">P's Inventory</strong>
       </a>
 
       <!-- Collapse -->
@@ -153,7 +153,7 @@
 
             <p class="lead font-weight-bold">{{ product.brand }} {{ product.name }}</p>
 
-            <p><strong>Specifications</strong> 
+            <p><strong>Other Details:</strong> 
                 <br>
                 {{ product.specifications }}</p>
 
@@ -274,7 +274,7 @@
     <!--Copyright-->
     <div class="footer-copyright py-3">
       © 2022 Copyright:
-      <a target="_blank">P's Stores</a>
+      <a target="_blank">P's Inventory</a>
     </div>
     <!--/.Copyright-->
 
