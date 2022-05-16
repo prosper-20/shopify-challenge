@@ -25,7 +25,7 @@
     <div class="container">
 
       <!-- Brand -->
-      <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
+      <a class="navbar-brand waves-effect" href="{% url 'home' %}" target="_blank">
         <strong class="blue-text">P's Store</strong>
       </a>
 
@@ -60,7 +60,18 @@
 
         <!-- Right -->
         <ul class="navbar-nav nav-flex-icons">
-          <li class="nav-item">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">Hi, USER</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                    <a class="dropdown-item" href="{% url 'maker' %}">Create Product</a>
+                    <a class="dropdown-item" href="{% url 'product-update' product.slug %}">Update Product</a>
+                    <a class="dropdown-item" href="{% url 'product-delete' product.slug %}">Delete Product</a>
+                </div>
+              </li>
+          <!-- <li class="nav-item">
             <a class="nav-link waves-effect">
               <span class="badge red z-depth-1 mr-1"> 1 </span>
               <i class="fas fa-shopping-cart"></i>
@@ -82,13 +93,25 @@
               target="_blank">
               <i class="fab fa-github mr-2"></i>MDB GitHub
             </a>
-          </li>
+          </li> -->
         </ul>
 
       </div>
 
     </div>
   </nav>
+  {% if messages %}  
+  <!-- <div class="pt-5 mt-4"> -->
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissable" role="alert">
+        <i class="fas fa-info-circle me-3"></i>
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+    {% endfor %}
+{% endif %}
   <!-- Navbar -->
 
   <!--Main layout-->
@@ -209,18 +232,6 @@
   <!--Footer-->
   <footer class="page-footer text-center font-small mt-4 wow fadeIn">
 
-    <!--Call to action-->
-    <div class="pt-4">
-      <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank"
-        role="button">Download MDB
-        <i class="fas fa-download ml-2"></i>
-      </a>
-      <a class="btn btn-outline-white" href="https://mdbootstrap.com/education/bootstrap/" target="_blank" role="button">Start
-        free tutorial
-        <i class="fas fa-graduation-cap ml-2"></i>
-      </a>
-    </div>
-    <!--/.Call to action-->
 
     <hr class="my-4">
 
@@ -262,8 +273,8 @@
 
     <!--Copyright-->
     <div class="footer-copyright py-3">
-      © 2019 Copyright:
-      <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MDBootstrap.com </a>
+      © 2022 Copyright:
+      <a target="_blank">P's Stores</a>
     </div>
     <!--/.Copyright-->
 
