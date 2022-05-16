@@ -110,3 +110,8 @@ def PhoneView(request):
     products = Product.objects.filter(category="1").all()
     return render(request, "core/available.html", {"products": products})
 
+
+def ElectronicsView(request):
+    products = Product.objects.filter(category="2").all()
+    return render(request, "core/electronics.html", {"products": products})
+
