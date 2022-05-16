@@ -107,6 +107,6 @@ def ProductDetailView(request, slug=None): # < here
 
     
 def CheckAvailabilty(request):
-    products = Product.objects.filter(status=1)
+    products = Product.objects.filter(status="1").all()
     return render(request, "core/available.html", {"products": products})
 
