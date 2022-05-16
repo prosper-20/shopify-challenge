@@ -102,8 +102,8 @@ def ProductDetailView(request, slug=None): # < here
         
     else:
         form = CommentForm()
-        # You changed form product_detail.html to detail_2.html
-        return render(request, 'core/detail_2.html', {"product": product, "products": products})
+        # You changed form product_detail.html to detail_2.html to product-page.html
+        return render(request, 'core/product-page.html', {"product": product, "products": products})
 
     
 def PhoneView(request):

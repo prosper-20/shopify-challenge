@@ -42,6 +42,7 @@ class Product(models.Model):
 	status = models.CharField(max_length=10, choices=CHOICES)
 	seller = models.CharField(max_length=30)
 	slug = models.SlugField()
+	specifications = models.TextField(blank=True, null=True)
 
 
 	def get_absolute_url(self):
