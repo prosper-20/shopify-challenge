@@ -1,11 +1,11 @@
 from typing import List
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Product, Comment
+from .models import Product, Comment, Warehouse
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy, reverse
-from core.forms import CommentForm
+from core.forms import CommentForm, WarehouseForm
 from django.contrib import messages
 
 # Create your views here.
@@ -119,4 +119,12 @@ def ElectronicsView(request):
 def OtherView(request):
     products = Product.objects.filter(category="3").all()
     return render(request, "core/other.html", {"products": products})
+
+
+class Warehouse(CreateView):
+    model = Warehouse
+
+    form_class = WarehouseForm
+    # success_url = "/"
+    template_name = "core/warehouse_form.html"
 

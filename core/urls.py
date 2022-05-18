@@ -10,6 +10,7 @@ ProductCommentView,
 PhoneView,
 ElectronicsView,
 OtherView,
+Warehouse,
 )
 
 urlpatterns = [
@@ -24,6 +25,7 @@ urlpatterns = [
     path('product/<slug:slug>/delete/', ProductDeleteView.as_view(), name="product-delete"),
     path('new/', MakeProduct.as_view(), name="maker"),
     path('product/<slug:slug>/comment/', ProductCommentView.as_view(), name="post_comments"),
+    path('warehouse/create/', Warehouse.as_view(), name="warehouse")
     
 ]
 
