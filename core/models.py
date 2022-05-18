@@ -5,6 +5,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
 from django.utils.text import slugify
+from django.utils import timezone
 
 CHOICES = (
 	("1", "Available"),
@@ -87,6 +88,28 @@ class Comment(models.Model):
 
 	def get_success_url(self):
 		return reverse_lazy('post-detail', kwargs={'pk': self.kwargs['pk']})
+
+
+LOCATION_CHOICES = (
+	("1", "AFRICA"),
+	("2", "EUROPE"),
+	("3", "AUSTRALIA"),
+	("4", "SOUTH AMERICA"),
+	("5", "OTHER")
+)
+
+
+class Warehouse(models.Model):
+	name = models.CharField(max_length=100)
+	location = models.CharField(choices=LOCATION_CHOICES, max_length=20)
+	item = models.ManyToManyField(Product, related_name="warehouse_item")
+	date_stored = models.DateTimeField(default=timezone.now)
+
+	def __str__(self):
+    		return self.name
+
+
+
 
 
 	
